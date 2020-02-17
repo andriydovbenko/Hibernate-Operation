@@ -30,7 +30,11 @@ public class Menu {
         log.info("\nFro choosing Author select author id (only digit):\n");
     }
 
-    public void printBasket(){
+    public void printBasket() {
         log.info("\nYour basket:\n");
+    }
+
+    public void printAuthorBooks() {
+        log.info("\nBooks By Author:\n");
     }
 }

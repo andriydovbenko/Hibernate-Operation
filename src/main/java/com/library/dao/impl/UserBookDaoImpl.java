@@ -25,6 +25,7 @@ public class UserBookDaoImpl implements UserBookDao {
         Query query = manager.createNativeQuery("SELECT b.book_id FROM " + BOOK_TABLE + " b " +
                 "WHERE user_id_user = :id");
         query.setParameter("id", userId);
+        @SuppressWarnings("unchecked")
         List<Integer> listBookIds = query.getResultList();
         manager.getTransaction().commit();
         manager.close();

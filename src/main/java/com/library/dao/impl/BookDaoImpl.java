@@ -32,10 +32,11 @@ public class BookDaoImpl implements BookDao {
     public void showAllBook() {
         EntityManager manager = factory.createEntityManager();
         manager.getTransaction().begin();
+        @SuppressWarnings("unchecked")
         List<Book> books = manager.createNativeQuery("SELECT * FROM book", Book.class).getResultList();
         manager.getTransaction().commit();
         manager.close();
-        books.forEach(book -> System.out.println(book));
+        books.forEach(System.out::println);
     }
 
     @Override
@@ -44,6 +45,7 @@ public class BookDaoImpl implements BookDao {
         manager.getTransaction().begin();
         Query query = manager.createNativeQuery("SELECT * FROM book WHERE genre =:genre", Book.class)
                 .setParameter("genre", genre);
+        @SuppressWarnings("unchecked")
         List<Book> books = query.getResultList();
         manager.getTransaction().commit();
         manager.close();
@@ -56,8 +58,9 @@ public class BookDaoImpl implements BookDao {
         EntityManager manager = factory.createEntityManager();
         manager.getTransaction().begin();
         Query query = manager.createNativeQuery("SELECT id_book FROM library.public.author_book where id_author = "
-                + authorId + "");
-        List list = query.getResultList();
+                + authorId);
+        @SuppressWarnings("unchecked")
+        List<Object> list = query.getResultList();
         List<Integer> booksId = new ArrayList<>();
         for (Object o : list) {
             booksId.add((Integer) o);

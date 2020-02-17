@@ -30,6 +30,7 @@ public class UserDaoImpl implements UserDao {
         EntityManager manager = factory.createEntityManager();
         manager.getTransaction().begin();
         Query query = manager.createNativeQuery("SELECT * FROM library.public.user", User.class);
+        @SuppressWarnings("unchecked")
         List<User> userList = query.getResultList();
         manager.getTransaction().commit();
         manager.close();

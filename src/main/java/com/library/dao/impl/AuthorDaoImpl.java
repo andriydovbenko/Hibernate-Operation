@@ -31,7 +31,7 @@ public class AuthorDaoImpl implements AuthorDao {
         EntityManager manager = factory.createEntityManager();
         manager.getTransaction().begin();
         Query query = manager.createNativeQuery("SELECT * FROM author", Author.class);
-        List<Author> authorList = query.getResultList();
+        @SuppressWarnings("unchecked") List<Author> authorList = query.getResultList();
         manager.getTransaction().commit();
         manager.close();
         return authorList;

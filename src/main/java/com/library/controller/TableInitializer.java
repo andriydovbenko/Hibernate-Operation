@@ -8,15 +8,15 @@ import com.library.entity.UserBook;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-public class DbCreator {
+public class TableInitializer {
     private final EntityManagerFactory factory;
 
-    public DbCreator(EntityManagerFactory factory) {
+    public TableInitializer(EntityManagerFactory factory) {
         this.factory = factory;
-        createDB();
+        initializeTables();
     }
 
-    private void createDB() {
+    private void initializeTables() {
         EntityManager manager = factory.createEntityManager();
         manager.getTransaction().begin();
 

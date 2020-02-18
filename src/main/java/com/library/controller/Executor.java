@@ -32,7 +32,7 @@ public class Executor {
     private boolean isBookChosen = false;
 
     public Executor(EntityManagerFactory factory) {
-        new DbCreator(factory);
+        new TableInitializer(factory);
         this.authorService = new AuthorServiceImpl(factory);
         this.bookUserService = new BookUserServiceImp(factory);
         this.userService = new UserServiceImpl(factory);

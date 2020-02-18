@@ -6,7 +6,6 @@ import com.library.entity.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,10 +42,10 @@ public class BookDaoImpl implements BookDao {
     public List<Book> findBookByGenre(String genre) {
         EntityManager manager = factory.createEntityManager();
         manager.getTransaction().begin();
-        Query query = manager.createNativeQuery("SELECT * FROM book WHERE genre =:genre", Book.class)
-                .setParameter("genre", genre);
         @SuppressWarnings("unchecked")
-        List<Book> books = query.getResultList();
+        List<Book> books = manager.createNativeQuery("SELECT * FROM book WHERE genre =:genre", Book.class)
+                .setParameter("genre", genre)
+                .getResultList();
         manager.getTransaction().commit();
         manager.close();
         return books;
@@ -57,16 +56,15 @@ public class BookDaoImpl implements BookDao {
         int authorId = author.getId();
         EntityManager manager = factory.createEntityManager();
         manager.getTransaction().begin();
-        Query query = manager.createNativeQuery("SELECT id_book FROM library.public.author_book where id_author = "
-                + authorId);
         @SuppressWarnings("unchecked")
-        List<Object> list = query.getResultList();
+        List<Object> list = manager.createNativeQuery("SELECT id_book FROM library.public.author_book " +
+                "where id_author = " + authorId).getResultList();
+        manager.getTransaction().commit();
+        manager.close();
         List<Integer> booksId = new ArrayList<>();
         for (Object o : list) {
             booksId.add((Integer) o);
         }
-        manager.getTransaction().commit();
-        manager.close();
         return booksId;
     }
 }

@@ -11,6 +11,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+@SuppressWarnings("SyntaxError")
 @Getter
 @ToString(exclude = "books")
 @NoArgsConstructor
@@ -24,6 +25,7 @@ public class Author {
 
     @Column(name = "first_name")
     private String firstName;
+
 
     @Column(name = "last_name")
     private String lastName;

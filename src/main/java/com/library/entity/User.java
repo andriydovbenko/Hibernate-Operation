@@ -8,6 +8,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+@SuppressWarnings("ALL")
 @Getter
 @EqualsAndHashCode(exclude = "userBooks")
 @ToString(exclude ="userBooks")

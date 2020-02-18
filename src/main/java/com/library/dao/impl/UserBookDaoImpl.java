@@ -11,7 +11,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 public class UserBookDaoImpl implements UserBookDao {
-    private final String BOOK_TABLE = "library.public.user_books";
+    private static final String BOOK_TABLE = "library.public.user_books";
     private final EntityManagerFactory factory;
 
     public UserBookDaoImpl(EntityManagerFactory factory) {

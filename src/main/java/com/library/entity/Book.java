@@ -28,7 +28,7 @@ public class Book {
     @JoinTable(name = "author_book",
             joinColumns = @JoinColumn(name = "id_book"),
             inverseJoinColumns = @JoinColumn(name = "id_author"))
-    private List<Author> authors = new ArrayList<>();
+    private final List<Author> authors = new ArrayList<>();
 
     @OneToMany(mappedBy = "book")
     private List<UserBook> userBooks = new ArrayList<>();

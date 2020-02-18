@@ -88,6 +88,7 @@ public class Executor {
     }
 
     private void exitFromApp() {
+        isAppRunning = false;
         scanner.close();
         System.exit(0);
     }
